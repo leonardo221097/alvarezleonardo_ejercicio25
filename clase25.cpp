@@ -1,42 +1,77 @@
-#include <iostream>
+#include<iostream>
+
+using namespace std;
 
 
-float matriz[0][0];
+int l=0;
+float **m;
+void relleno(int l,float **m);
+
+void imprimecabezas(int l,float **m);
+
+void imprime(int l,float **m);
 
 
 int main()
 {
- int x;
- 
-    std::cout << "escribe un numero de 3 a 11"  << std::endl;
-    std::cin >>x;
-    if(x<3){
-        std::cout << "el valor no se encuentra dentro del rango de 3 a 11"  << std::endl;
-    }
-    else if(x>11){
-        std::cout << "el valor no se encuentra dentro del rango de 3 a 11"  << std::endl;
-    }
-    else{
-    int columnas=x;
-        int filas=x+2;
-    matriz[filas][columnas] ;
-        
-    }
-    
-   
-  
-    
-    return 0;
+
+cout<<"Escriba un numero del 3 al 11"<<endl;
+cin>>l;
+
+if(l>=3 && l<=11){
+float ** matriz =new  float *[l];
+for (int i =0; i < l; ++i){matriz[i] =new float[l+2];
 }
 
-int relleno(int m){
-    for (int i=0;i<m+2;i++)
+relleno(l,matriz);
+imprimecabezas(l,matriz);
+imprime(l,matriz);
+}
+
+else{cout<<"El numero no esta en el rango valido"<<endl;}
+
+return 0;
+
+}
+
+
+
+void relleno(int l,float **m) // se crea la funcion que rellena la matriz
+{
+
+ for (int i=0;i<l+2;i++)
     {
-      for (int j=0;j<m;j++) {
-          matriz[i][j] =i+j;
+for (int j=0;j<l;j++)
+{
+          m[j][i] =i+j;
           
       }
     }
-    
-   
+
 }
+
+void imprimecabezas(int l, float **m) //se crea la funcion que imprime la primera fila de la matriz y crea la suma acumulada de los valores de la primera fila
+{
+float sum=0;
+for (int i =0; i <l;i++)
+{
+sum+=m[i][0];
+cout<<m[i][0]<<" "<<sum <<"    "<<endl;
+
+}
+
+}
+
+void imprime(int l,float **m) //se crea la funcion que imprime la matriz creada en relleno
+{
+
+for (int i=0; i< l+2 ;i++)
+{
+
+for ( int j=0;j <l;j++) 
+{cout<<" "<<m[j][i]<<" ";}
+cout<<endl;
+}
+
+}
+
